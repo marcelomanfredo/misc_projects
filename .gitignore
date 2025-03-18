@@ -1,0 +1,22 @@
+# Rust build artifacts
+/Rust/target/
+
+# Go build artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+/test.out
+*.test
+*.out
+*_test.go
+
+# Go workspace files
+.idea/
+
+# Coverage output
+*.cov
+
+# Environment variables
+.env
