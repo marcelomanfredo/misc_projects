@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"os"
 
-	"Validator/internal"
+	"marcelomanfredo/misc/Go/cmd/Validator/args"
 )
 
 func main() {
-	if err := internal.Execute(); err != nil {
+	if err := args.Execute(); err != nil {
 		fmt.Println("Error executing command:", err)
 		os.Exit(1)
 	}

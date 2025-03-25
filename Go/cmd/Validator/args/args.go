@@ -1,10 +1,11 @@
-package internal
+package args
 
 import (
 	"fmt"
 
-	"Validator/internal/generate"
-	"Validator/internal/validate"
+	"marcelomanfredo/misc/Go/internal/generate"
+	"marcelomanfredo/misc/Go/internal/validate"
+	"marcelomanfredo/misc/Go/logger"
 
 	"github.com/spf13/cobra"
 )
@@ -37,8 +38,9 @@ var (
 		Use:   "cpf",
 		Short: "Validate or create a new CPF string",
 		RunE: func(cmd *cobra.Command, args []string) error {
+			logger.Init(verbose)
 			if create {
-				if err := generate.GenerateCpf(verbose); err != nil {
+				if err := generate.GenerateCpf(); err != nil {
 					return err
 				}
 				return nil
@@ -48,7 +50,7 @@ var (
 			if n != 1 {
 				return fmt.Errorf("expected 1 value, but got %d", n)
 			}
-			if err := validate.ValidateCpf(verbose, args[0]); err != nil {
+			if err := validate.ValidateCpf(args[0]); err != nil {
 				return err
 			}
 			return nil

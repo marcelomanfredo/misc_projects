@@ -2,18 +2,19 @@ package utils
 
 import (
 	"fmt"
+	"strconv"
+
+	"marcelomanfredo/misc/Go/logger"
 )
 
-func CalculateCpfDigit(verbose bool, value string) (int, error) {
+func CalculateCpfDigit(value string) (int, error) {
 	// Check if array is valid
 	if err := validateArray(cpf, value); err != nil {
 		return -1, err
 	}
 
-	if verbose {
-		fmt.Println("\nArray for check:", value)
-		fmt.Println("Initializing calculation...")
-	}
+	logger.Debugln("\nArray for check: %s", value)
+	logger.Debugln("Initializing calculation...")
 
 	// CPF check rule:
 	// First, we need to multiply the first 9 digits by a sequence of 10..2
@@ -38,25 +39,23 @@ func CalculateCpfDigit(verbose bool, value string) (int, error) {
 		digit := byte(c) - '0'
 		checkDigit += int(digit * n)
 		n -= 1
-		if verbose {
-			if i != len(value)-1 {
-				fmt.Printf("(%d * %d) + ", digit, n+1)
-			} else {
-				fmt.Printf("(%d * %d) = ", digit, n+1)
-				fmt.Println(checkDigit)
-			}
+
+		if i != len(value)-1 {
+			logger.Debug("(%d * %d) + ", digit, n+1)
+		} else {
+			logger.Debug("(%d * %d) = ", digit, n+1)
+			logger.Debugln(strconv.Itoa(checkDigit))
 		}
 	}
 
 	validator := checkDigit * 10 % 11
-	if verbose {
-		fmt.Printf("%d * 10 %% 11 = %d\n", checkDigit, validator)
-	}
+	logger.Debugln("%d * 10 %% 11 = %d", checkDigit, validator)
+
 	if validator == 10 {
-		if verbose {
-			fmt.Printf("Since the modulus is 10, the validator should be 0\n")
-		}
+		logger.Debugln("Since the modulus is 10, the validator should be 0")
 		validator = 0
 	}
+	logger.Debugln("Checker digit: %d", validator)
+
 	return validator, nil
 }
