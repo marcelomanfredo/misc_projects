@@ -19,13 +19,13 @@ func GenerateCpf() error {
 	if n1, err := utils.CalculateCpfDigit(s.String()); err != nil {
 		return err
 	} else {
-		s.WriteByte(byte(n1))
+		s.WriteByte('0' + byte(n1))
 	}
 
 	if n2, err := utils.CalculateCpfDigit(s.String()); err != nil {
 		return err
 	} else {
-		s.WriteByte(byte(n2))
+		s.WriteByte('0' + byte(n2))
 	}
 
 	logger.Debug("\nRandomly generated CPF: ")

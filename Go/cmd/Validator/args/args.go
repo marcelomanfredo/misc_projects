@@ -3,7 +3,7 @@ package args
 import (
 	"fmt"
 
-	"marcelomanfredo/misc/Go/internal/generate"
+	"marcelomanfredo/misc/Go/cmd/Validator/internal/generate"
 	"marcelomanfredo/misc/Go/internal/validate"
 	"marcelomanfredo/misc/Go/logger"
 

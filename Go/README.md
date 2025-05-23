@@ -1,16 +1,39 @@
 # Go Projects
 
-This directory contains multiple Go projects that I am working on to enhance my knowledge of the Go programming language. Each project is isolated in its own subdirectory with a `go.mod` file to manage dependencies.
+This repository contains multiple Go projects I'm building to improve my skills in the Go programming language.
 
 ## Project Structure
 
-- **project1/**: [placeholder]
-- **project2/**: [placeholder]
-- **project3/**: [placeholder]
+---
 
-I will update this README with project details as I continue adding new projects.
+### Document Validator
+
+A command-line tool for validating Brazilian document numbers.
+
+So far, I've implemented logic for:
+- **CPF**
+
+**TODO:** Add support for MOD10 and MOD11 checksum algorithms, which are widely used in Brazilian documents like:
+- **CNPJ**
+- **Título de Eleitor**
+- **PIS**
+- **CNH** (which has some custom validation rules)
 
 ---
 
-Feel free to explore the individual project directories for further details.
+### Document Parser
+
+A small tool to parse a custom CSV format and calculate specific fields, particularly:
+- `Value`
+- `Duration`
+
+This project is mostly experimental and may not be used in production, but the parsing and calculation logic could be helpful for others.
+
+---
+
+## 📌 Notes
+
+- Each project is self-contained and serves as a focused exercise in learning Go.
+- I'll update this README as I add new projects or enhance existing ones.
+- Feel free to explore the individual project directories for more details and source code.
 
