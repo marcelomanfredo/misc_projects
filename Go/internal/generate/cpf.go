@@ -3,7 +3,7 @@ package generate
 import (
 	"fmt"
 	"math/rand"
-	"strconv"
+	"strings"
 
 	"marcelomanfredo/misc/Go/logger"
 	"marcelomanfredo/misc/Go/pkg/utils"
@@ -11,24 +11,24 @@ import (
 
 func GenerateCpf() error {
 	logger.Debugln("Generating new CPF...")
-	var randValue string
+	var s strings.Builder
 	for range 9 {
-		randValue += strconv.Itoa(rand.Intn(9))
+		s.WriteByte('0' + byte(rand.Intn(10)))
 	}
 
-	if n1, err := utils.CalculateCpfDigit(randValue); err != nil {
+	if n1, err := utils.CalculateCpfDigit(s.String()); err != nil {
 		return err
 	} else {
-		randValue += strconv.Itoa(n1)
+		s.WriteByte(byte(n1))
 	}
 
-	if n2, err := utils.CalculateCpfDigit(randValue); err != nil {
+	if n2, err := utils.CalculateCpfDigit(s.String()); err != nil {
 		return err
 	} else {
-		randValue += strconv.Itoa(n2)
+		s.WriteByte(byte(n2))
 	}
 
 	logger.Debug("\nRandomly generated CPF: ")
-	fmt.Println(randValue)
+	fmt.Println(s.String())
 	return nil
 }
